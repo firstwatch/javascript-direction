@@ -5,6 +5,7 @@ var directionArray = [{gt: 315, lt: 45, direction: "N"},
 ]
 
 function getDirection(current, index, arr) {
+    // ensure the value is between 0 and 360, to include negative numbers
     var value = this % 360;
     value = value < 0 ? 360 + value : value;
     if (current.gt > current.lt) {
@@ -17,6 +18,8 @@ function computeDirection() {
     var value = document.getElementById("angle").value;
     if (!value) return;
     var angle = parseFloat(value);
+    // this uses the .find() function with a function and value to get the first instance
+    // on the directionArray that matches the condition
     var directionInstance = directionArray.find(getDirection, angle);
     var directionElement = document.getElementById("direction");
     if (!directionInstance) {
